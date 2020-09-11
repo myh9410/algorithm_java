@@ -17,9 +17,9 @@ class Solution {
         	int tmp = nums[i];
         	if (max < tmp) max = tmp;
         	for (int j = i+1; j < nums.length; j++) {
-				    tmp*=nums[j];
-				    if (max < tmp) max = tmp;
-			    }
+			tmp*=nums[j];
+			if (max < tmp) max = tmp;
+		}
         }    
         return max;
     }
