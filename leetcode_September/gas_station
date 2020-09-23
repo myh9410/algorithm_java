@@ -1,0 +1,44 @@
+package leetcode_sep;
+
+public class gas_station {
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+		int [] gas = {1,2,3,4,5};
+		int [] cost = {3,4,5,1,2};
+		System.out.println(sol.canCompleteCircuit(gas, cost));
+	}
+}
+
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+    	int gsum = 0;
+    	int csum = 0;
+        for (int i = 0; i < gas.length; i++) {
+			gsum += gas[i];
+		}
+        for (int i = 0; i < cost.length; i++) {
+			csum += cost[i];
+		}
+        if (gsum < csum) return -1;
+        else {
+        	int n = gas.length;
+        	for (int i = 0; i < n; i++) {
+				if (gas[i] >= cost[i] && check(gas,cost,i)) return i;
+			}
+        	return -1;
+        }
+    }
+
+	private boolean check(int [] gas, int [] cost, int i) {
+		int able = 0;
+		for (int j = i; j < cost.length; j++) {
+			able += gas[j]-cost[j];
+			if (able < 0) return false;
+		}
+		for (int j = 0; j < i; j++) {
+			able += gas[j]-cost[j];
+			if (able < 0) return false;
+		}
+		return true;
+	}
+}
